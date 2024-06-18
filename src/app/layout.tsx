@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
-import "./globals.css";
+import "@/lib/fonts/icofonts.css";
+import "./globals.scss";
 import { cn } from "@/lib/utils";
 
 const fontSans = FontSans({
@@ -22,11 +23,11 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased",
+          "min-h-screen font-sans text-dark-6 bg-light-2 antialiased custom-scrollbar",
           fontSans.variable
         )}
       >
-        {children}
+        <div className="wrapper">{children}</div>
       </body>
     </html>
   );
