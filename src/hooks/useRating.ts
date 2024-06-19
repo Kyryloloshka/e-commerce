@@ -21,9 +21,6 @@ export const useRating = () => {
 
         setRatingActiveWidth();
 
-        if (rating.classList.contains('rating_set')) {
-          setRating(rating);
-        }
       }
 
       function initRatingVars(rating: HTMLElement) {
@@ -38,47 +35,7 @@ export const useRating = () => {
         }
       }
 
-      function setRating(rating: HTMLElement) {
-        const ratingItems = rating.querySelectorAll('.rating__item');
-        for (let index = 0; index < ratingItems.length; index++) {
-          const ratingItem = ratingItems[index] as HTMLInputElement;
-          ratingItem.addEventListener('click', function () {
-            initRatingVars(rating);
 
-            if (rating.dataset.ajax) {
-              setRatingValue(ratingItem.value, rating);
-            } else {
-              if (ratingValue) {
-                ratingValue.innerHTML = (index + 1).toString();
-                setRatingActiveWidth();
-              }
-            }
-          });
-        }
-      }
-
-      async function setRatingValue(value: string, rating: HTMLElement) {
-        if (!rating.classList.contains('rating_sending')) {
-          rating.classList.add('rating_sending');
-          let response = await fetch('rating.json', {
-            method: 'GET',
-          });
-
-          if (response.ok) {
-            const result = await response.json();
-            const newRating = result.newRating;
-
-            if (ratingValue) {
-              ratingValue.innerHTML = newRating;
-              setRatingActiveWidth();
-              rating.classList.remove('rating_sending');
-            }
-          } else {
-            alert("Помилка");
-            rating.classList.remove('rating_sending');
-          }
-        }
-      }
     }
   }, []);
 };

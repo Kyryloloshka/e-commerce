@@ -12,7 +12,7 @@
   height: 2px;
   transform: translateY(-50%);
   z-index: 3;
-  background-color: hsl(var(--primary-500));
+  background-color: var(--primary-500);
 }
 
 .product-card__rating {
@@ -47,7 +47,6 @@
   top: 0;
   left: 0;
   overflow: hidden;
-  cursor: pointer;
 }
 
 .rating__active::before {
@@ -57,7 +56,7 @@
   height: 100%;
   top: 0;
   left: 0;
-  color: #E8AA31;
+  color: var(--primary-500);
 }
 
 .rating__items {
@@ -74,7 +73,6 @@
   flex: 0 0 20%;
   height: 100%;
   opacity: 0;
-  cursor: pointer;
 }
 
 .rating__value {

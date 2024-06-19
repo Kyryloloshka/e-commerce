@@ -27,7 +27,7 @@ const ProductDetailsPage: React.FC = () => {
   if (!product) return <div>Loading...</div>;
 
   return (
-    <div>
+    <main>
       <h1>{product.title}</h1>
       <p>Category: {product.category}</p>
       <p>Brand: {product.brand}</p>
@@ -45,7 +45,7 @@ const ProductDetailsPage: React.FC = () => {
           />
         ))}
       </div>
-    </div>
+    </main>
   );
 };
 
