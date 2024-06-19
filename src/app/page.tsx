@@ -41,7 +41,7 @@ const ProductsPage: React.FC = () => {
             variant={"circle"}
             size={"circle"}
             onClick={() =>
-              setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+              setCurrentPage((prev) => Math.min(prev - 1, totalPages))
             }
             disabled={currentPage === totalPages}
           >

@@ -74,8 +74,8 @@ const config = {
         },
       },
       boxShadow: {
-        "xl": "0px 0px 15px 5px hsl(var(--primary-500), 0.3)",
-        "3xl": "0px 1px 68px -1px hsl(var(--primary-500), 0.3)",
+        "xl": "0px 0px 15px 5px rgba(255, 112, 174, 0.3)",
+        "3xl": "0px 1px 30px -1px rgba(255, 112, 174, 0.2)",
       },
       borderRadius: {
         lg: "var(--radius)",

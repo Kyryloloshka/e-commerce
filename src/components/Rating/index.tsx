@@ -1,3 +1,4 @@
+"use client"
 import { useRating } from "@/hooks/useRating";
 import React, { useEffect, useRef } from "react";
 import {
@@ -6,6 +7,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "../ui/tooltip";
+import "./styles.scss";
 
 const Rating = ({ rating }: { rating: number }) => {
   useRating();
