@@ -1,0 +1,16 @@
+.crossed-out {
+  position: relative;
+  display: inline-block;
+}
+.crossed-out::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -5%;
+  border-radius: 2px;
+  width: 110%;
+  height: 2px;
+  transform: translateY(-50%);
+  z-index: 3;
+  background-color: var(--primary-500);
+}

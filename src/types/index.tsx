@@ -10,4 +10,26 @@ export interface Product {
   brand: string;
   thumbnail: string;
   images: string[];
+  availabilityStatus: string;
+  dimensions: {
+    depth: number;
+    height: number;
+    width: number;
+  };
+  minimumOrderQuantity: number;
+  returnPolicy: string;
+  reviews: Review[];
+  shippingInformation: string;
+  sku: string;
+  tags: string[];
+  warrantyInformation: string;
+  weight: number;
+}
+
+export interface Review {
+  rating: number;
+  comment: string;
+  date: string;
+  reviewerEmail: string;
+  reviewerName: string;
 }

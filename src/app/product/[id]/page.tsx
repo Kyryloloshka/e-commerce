@@ -9,6 +9,8 @@ import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Rating from "@/components/Rating";
+import { countDiscountedPrice } from "@/lib/utils";
+import "./styles.scss";
 
 const NextArrow = ({ onClick }: { onClick?: () => void }) => {
   return (
@@ -74,7 +76,7 @@ const ProductDetailsPage: React.FC = () => {
 
   return (
     <main>
-      <div className="flex product-details__container">
+      <div className="flex product-details__container gap-4">
         <div className="w-1/2 relative">
           {images.length === 1 ? (
             <Image
@@ -89,7 +91,9 @@ const ProductDetailsPage: React.FC = () => {
                 <div key={index} className="relative w-full h-0 pb-[100%]">
                   <Image
                     className="object-contain"
-                    layout="fill"
+                    height={product.dimensions.height}
+                    width={product.dimensions.width}
+                    layout="responsive"
                     src={image}
                     alt={product.title}
                   />
@@ -98,15 +102,75 @@ const ProductDetailsPage: React.FC = () => {
             </Slider>
           )}
         </div>
-        <div className="w-1/2 flex flex-col gap-3">
-          <h1 className="text-3xl font-semibold pt-12">{product.title}</h1>
-          <Rating rating={product.rating} />
-          <p>Category: {product.category}</p>
-          <p>Brand: {product.brand}</p>
-          <p>Price: ${product.price}</p>
-          <p>Discount: {product.discountPercentage}%</p>
-          <p>Description: {product.description}</p>
-          <p>Stock: {product.stock}</p>
+        <div className="w-1/2 flex flex-col gap-12">
+          <div className="flex flex-col gap-5">
+            <h1 className="text-4xl font-medium pt-12 tracking-wider">
+              {product.title}
+            </h1>
+            <Rating rating={product.rating} />
+            {product.availabilityStatus === "In Stock" ? (
+              <div className="flex items-center gap-3">
+                <p className="bg-light-6 self-start p-1 rounded-full flex items-center">
+                  <i className="_icon-check bg-primary-500 text-sm text-white w-5 h-5 flex items-center justify-center rounded-full"></i>
+                  <span className="px-1.5 text-primary-600 pb-[1px]">
+                    {product.availabilityStatus}
+                  </span>
+                </p>
+                <span className="pb-[1px]">
+                  The goods left - {product.stock}
+                </span>
+              </div>
+            ) : (
+              <p className="bg-gray-300 self-start p-1 rounded-full flex items-center">
+                <span className="px-1.5 text-slate-600">
+                  {product.availabilityStatus}
+                </span>
+              </p>
+            )}
+            <p className="text-lg tracking-wider leading-[1.1em]">
+              {product.description}
+            </p>
+            <div className="flex  items-end flex-wrap gap-3">
+              {product.discountPercentage > 0 ? (
+                <div>
+                  <p className="font-semibold tracking-wider crossed-out leading-[1.05em] text-xl">
+                    ${product.price}
+                  </p>
+                  <p className="font-semibold tracking-wider leading-[1.05em] text-3xl">
+                    $
+                    {countDiscountedPrice(
+                      product.price,
+                      product.discountPercentage
+                    )}
+                  </p>
+                </div>
+              ) : (
+                <p className="font-bold tracking-wider text-lg leading-[1.05em]">
+                  ${product.price}
+                </p>
+              )}
+              <div className="flex gap-3 flex-wrap">
+                <Button
+                  className="flex px-8 py-6 rounded-xl gap-3 text-light-4 text-2xl bg-primary-500 hover:bg-primary-600 hover:text-light-2 hover:shadow-xl transition duration-300"
+                  onClick={() => alert("Added to cart")}
+                >
+                  <i className="_icon-cart text-[16px]"></i>
+                  <span className="pb-[1px] leading-[1em]">Add to Cart</span>
+                </Button>
+                <Button
+                  className="flex bg-light-1 text-primary-500 px-8 py-6 rounded-xl gap-3  text-2xl hover:bg-light-1 hover:text-primary-600 hover:shadow-xl transition duration-300"
+                  onClick={() => alert("Buy now")}
+                >
+                  <span className="pb-[1px] leading-[1em]">Buy now</span>
+                </Button>
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-col gap-3">
+            <h2 className="text-2xl font-semibold">About</h2>
+            {product.brand && <p>Brand: {product.brand}</p>}
+            <p>Category: {product.category}</p>
+          </div>
         </div>
       </div>
     </main>
