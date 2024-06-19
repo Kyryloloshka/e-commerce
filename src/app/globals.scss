@@ -160,10 +160,10 @@ $minWidth: 320;
 // Ширина полотна (макету)
 $maxWidth: 1980;
 // Ширина обмежувального контейнера (0 = нема обмежень)
-$maxWidthContainer: 1000;
+$maxWidthContainer: 1200;
 // Загальній відступ контейнера
 // (30 = 15px зліва та справа, 0 = нема відступу)
-$containerPadding: 30;
+$containerPadding: 50;
 $oneSidePadding: math.div($containerPadding, 2);
 // Тип адаптиву:
 // 1 = чуйність (у контейнера нема брейкпоінтів)
