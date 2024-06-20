@@ -20,7 +20,7 @@ const ProductCard = ({ product }: { product: Product }) => {
           sizes="300px"
           src={product.thumbnail}
           alt={product.title}
-          priority={false}
+          priority={true}
         />
       </Link>
       <Link href={`/product/${product.id}`}>

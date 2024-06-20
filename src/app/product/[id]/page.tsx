@@ -8,8 +8,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Image from "next/legacy/image";
 import { Button } from "@/components/ui/button";
-import Rating from "@/components/Rating";
-import { countDiscountedPrice } from "@/lib/utils";
 import "./styles.scss";
 import ProductDetails from "@/components/ProductDetails";
 
