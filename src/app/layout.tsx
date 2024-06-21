@@ -25,7 +25,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          "min-h-screen font-sans text-dark-6 bg-light-2 antialiased custom-scrollbar",
+          "min-h-screen font-sans text-dark-6 background-elem antialiased custom-scrollbar",
           fontSans.variable
         )}
       >

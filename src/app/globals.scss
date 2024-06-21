@@ -1,24 +1,83 @@
-@use 'sass:math';
+@use "sass:math";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /*Онулення*/
-*{padding: 0;margin: 0;border: 0;}
-*,*:before,*:after{-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;}
-:focus,:active{outline: none;}
-a:focus,a:active{outline: none;}
-nav,footer,header,aside{display: block;}
-html,body{height: 100%;width: 100%;font-size: 100%;line-height: 1;font-size: 14px;-ms-text-size-adjust: 100%;-moz-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;}
-input,button,textarea{font-family:inherit;}
-input::-ms-clear{display: none;}
-button{cursor: pointer;}
-button::-moz-focus-inner {padding:0;border:0;}
-a, a:visited{text-decoration: none;}
-a:hover{text-decoration: none;}
-ul li{list-style: none;}
-img{vertical-align: top;}
-h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+*,
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+:focus,
+:active {
+  outline: none;
+}
+a:focus,
+a:active {
+  outline: none;
+}
+nav,
+footer,
+header,
+aside {
+  display: block;
+}
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  line-height: 1;
+  font-size: 14px;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+input,
+button,
+textarea {
+  font-family: inherit;
+}
+input::-ms-clear {
+  display: none;
+}
+button {
+  cursor: pointer;
+}
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+a,
+a:visited {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+ul li {
+  list-style: none;
+}
+img {
+  vertical-align: top;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: 400;
+}
 /*--------------------*/
 
 @layer base {
@@ -53,26 +112,26 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
 
     --radius: 0.5rem;
 
-		--primary-500: #ff70ae;
-		--primary-600: #ff4797;
-		--primary-700: #ff1f80;
-		--primary-800: #f5006a;
-		--secondary-500: #80dfff;
-		--secondary-600: #5cd6ff;
-		--secondary-700: #33ccff;
-		--off-white: #d1e0ff;
-		--dark-1: #000000;
-		--dark-2: #0a0a0b;
-		--dark-3: #111113;
-		--dark-4: #1f1f23;
-		--dark-5: #2f2f32;
-		--dark-6: #3e3e41;
-		--light-1: #ffffff;
-		--light-2: #fff0f3;
-		--light-3: #ffebf4;
-		--light-4: #ffe5f4;
-		--light-5: #ffdbf4;
-		--light-6: #ffd6f7;
+    --primary-500: #ff70ae;
+    --primary-600: #ff4797;
+    --primary-700: #ff1f80;
+    --primary-800: #f5006a;
+    --secondary-500: #80dfff;
+    --secondary-600: #5cd6ff;
+    --secondary-700: #33ccff;
+    --off-white: #d1e0ff;
+    --dark-1: #000000;
+    --dark-2: #0a0a0b;
+    --dark-3: #111113;
+    --dark-4: #1f1f23;
+    --dark-5: #2f2f32;
+    --dark-6: #3e3e41;
+    --light-1: #ffffff;
+    --light-2: #fff0f3;
+    --light-3: #ffebf4;
+    --light-4: #ffe5f4;
+    --light-5: #ffdbf4;
+    --light-6: #ffd6f7;
   }
 
   .dark {
@@ -107,50 +166,69 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
 }
 
 @layer base {
-
 }
 
-
+.background-elem::before {
+  content: "";
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: linear-gradient(
+    -30deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 1) 26%,
+    rgba(255, 242, 248, 1) 46%,
+    rgba(255, 224, 237, 1) 75%,
+    rgba(255, 202, 225, 1) 100%
+  );
+  z-index: -1000;
+}
 
 // Адаптивне значення
-@mixin adaptiveValue($property, $startSize, $minSize, $type:1) {
-	$addSize: $startSize - $minSize;
+@mixin adaptiveValue($property, $startSize, $minSize, $type: 1) {
+  $addSize: $startSize - $minSize;
 
-	@if $type ==1 {
-		#{$property}: $startSize + px;
+  @if $type ==1 {
+    #{$property}: $startSize + px;
 
-		@media (max-width: #{$containerWidth + px}) {
-			#{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$containerWidth - 320}));
-		}
-	}
+    @media (max-width: #{$containerWidth + px}) {
+      #{$property}: calc(
+        #{$minSize + px} + #{$addSize} *
+          ((100vw - 320px) / #{$containerWidth - 320})
+      );
+    }
+  } @else if $type ==2 {
+    #{$property}: $startSize + px;
 
-	@else if $type ==2 {
-		#{$property}: $startSize + px;
-
-		@media (min-width: #{$containerWidth + px}) {
-			#{$property}: calc(#{$minSize + px}+ #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320}));
-		}
-	}
-
-	@else {
-		#{$property}: calc(#{$minSize + px}+ #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320}));
-	}
+    @media (min-width: #{$containerWidth + px}) {
+      #{$property}: calc(
+        #{$minSize + px}+ #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320})
+      );
+    }
+  } @else {
+    #{$property}: calc(
+      #{$minSize + px}+ #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320})
+    );
+  }
 }
 
 // To %
 @function prc($pxOne, $pxTwo) {
-	$result: math.div($pxOne, $pxTwo) * 100%;
-	@return $result;
+  $result: math.div($pxOne, $pxTwo) * 100%;
+  @return $result;
 }
 
 @function rem($px) {
-	$result: math.div($px, 16)+rem;
-	@return $result;
+  $result: math.div($px, 16) + rem;
+  @return $result;
 }
 
 @function em($px, $fn: 16) {
-	$result: math.div($px, $fn)+em;
-	@return $result;
+  $result: math.div($px, $fn) + em;
+  @return $result;
 }
 
 $fontSize: 16;
@@ -173,115 +251,114 @@ $responsiveType: 1;
 // Ширина спрацьовування першого брейк-поінта
 $containerWidth: $maxWidthContainer + $containerPadding;
 
-
-
 // Брейк-поінти
-$pc: em($containerWidth);// ПК, ноутбуки, декотрі планшети в горизонтальному положенні
-$tablet: em(991.98);// Планшети, декотрі телефони в горизонтальному положенні
-$mobile: em(767.98);// Телефони L
+$pc: em(
+  $containerWidth
+); // ПК, ноутбуки, декотрі планшети в горизонтальному положенні
+$tablet: em(991.98); // Планшети, декотрі телефони в горизонтальному положенні
+$mobile: em(767.98); // Телефони L
 $mobileSmall: em(479.98); // Телефони S
 
 body {
-	padding-top: rem(64);
-	.lock & {
-		overflow: hidden;
-		touch-action: none;
-		overscroll-behavior: none;
-	}
+  padding-top: rem(64);
+  .lock & {
+    overflow: hidden;
+    touch-action: none;
+    overscroll-behavior: none;
+  }
 }
 
-html, a {
-	color: var(--dark-1);
+html,
+a {
+  color: var(--dark-1);
 }
 
-body, 
+body,
 html {
-
-	width: 100%;
-	font-size: $fontSize;
+  width: 100%;
+  font-size: $fontSize;
 }
 
 .wrapper {
-	min-height: calc(100vh - 4rem);
-	display: flex;
-	flex-direction: column;
-	overflow: hidden;
-	// Прикріплюємо footer до низу
-	main {
-		flex: 1 1 auto;
-	}
-	// фікс слайдерів
-	> * {
-		min-width: 0;
-	}
+  min-height: calc(100vh - 4rem);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  // Прикріплюємо footer до низу
+  main {
+    flex: 1 1 auto;
+  }
+  // фікс слайдерів
+  > * {
+    min-width: 0;
+  }
 }
 
 @if ($responsiveType==1) {
-	// Чуйна
-	[class*="__container"] {
-		@if ($maxWidthContainer>0) {
-			max-width: math.div(calc($maxWidthContainer + $containerPadding), 14)+rem;
-			box-sizing: border-box;
-			margin: 0 auto;
-		}
-		@if ($containerPadding>0) {
-			@include adaptiveValue(padding-left, $oneSidePadding, 10);
-			@include adaptiveValue(padding-right, $oneSidePadding, 10);
-		}
-	}
+  // Чуйна
+  [class*="__container"] {
+    @if ($maxWidthContainer>0) {
+      max-width: math.div(calc($maxWidthContainer + $containerPadding), 14) +
+        rem;
+      box-sizing: border-box;
+      margin: 0 auto;
+    }
+    @if ($containerPadding>0) {
+      @include adaptiveValue(padding-left, $oneSidePadding, 10);
+      @include adaptiveValue(padding-right, $oneSidePadding, 10);
+    }
+  }
 } @else {
-	// По брейк-поінтам
-	[class*="__container"] {
-		margin: 0 auto;
-		@if ($maxWidthContainer>0) {
-			max-width: math.div($maxWidthContainer, 14)+rem;
-			box-sizing: content-box;
-		} @else {
-			@if ($containerPadding>0) {
-				padding: 0 rem(math.div($containerPadding, 2));
-			}
-		}
-		@media (max-width: $pc) {
-			max-width: rem(970);
-		}
-		@media (max-width: $tablet) {
-			max-width: rem(750);
-		}
-		@media (max-width: $mobile) {
-			max-width: none;
-			@if ($containerPadding>0 and $maxWidthContainer>0) {
-				padding: 0 rem(math.div($containerPadding, 2));
-			}
-		}
-	}
+  // По брейк-поінтам
+  [class*="__container"] {
+    margin: 0 auto;
+    @if ($maxWidthContainer>0) {
+      max-width: math.div($maxWidthContainer, 14) + rem;
+      box-sizing: content-box;
+    } @else {
+      @if ($containerPadding>0) {
+        padding: 0 rem(math.div($containerPadding, 2));
+      }
+    }
+    @media (max-width: $pc) {
+      max-width: rem(970);
+    }
+    @media (max-width: $tablet) {
+      max-width: rem(750);
+    }
+    @media (max-width: $mobile) {
+      max-width: none;
+      @if ($containerPadding>0 and $maxWidthContainer>0) {
+        padding: 0 rem(math.div($containerPadding, 2));
+      }
+    }
+  }
 }
 
 .custom-scrollbar::-webkit-scrollbar {
-	@apply w-[4px] h-[4px] rounded-[2px] transition-colors relative;
+  @apply w-[4px] h-[4px] rounded-[2px] transition-colors relative;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-	@apply bg-light-2;
+  @apply bg-light-2;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-	@apply bg-primary-500 rounded-[50px];
+  @apply bg-primary-500 rounded-[50px];
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-	@apply bg-primary-600;
+  @apply bg-primary-600;
 }
 .common-container {
-	@apply h-full custom-scrollbar overflow-y-scroll;
+  @apply h-full custom-scrollbar overflow-y-scroll;
 }
-
-
 
 .product-list {
   display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-	gap: 20px;
-	margin: 20px 0;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  margin: 20px 0;
 }
 
 .pagination {
@@ -294,4 +371,3 @@ html {
   max-width: 100px;
   margin: 10px;
 }
-

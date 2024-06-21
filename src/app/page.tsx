@@ -66,7 +66,7 @@ const ProductsPage: React.FC = () => {
     <main className="pt-12 pb-24">
       <div className="main__container flex flex-col gap-4">
         <h1 className="text-3xl font-bold text-dark-6">All Products</h1>
-        <div className="flex gap-4">
+        <div className="flex gap-4 bg-[#80dfff20] p-2 rounded-lg">
           <Input
             type="text"
             placeholder="Search products..."
@@ -78,7 +78,7 @@ const ProductsPage: React.FC = () => {
             value={selectedCategory}
             onValueChange={(value) => setSelectedCategory(value)}
           >
-            <SelectTrigger className="w-[180px]">
+            <SelectTrigger className="bg-light-1 text-dark-6 placeholder:text-gray-600 sm:max-w-[140px]">
               <SelectValue placeholder="Select Category" />
             </SelectTrigger>
             <SelectContent>
