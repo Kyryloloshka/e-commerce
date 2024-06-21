@@ -44,7 +44,9 @@ const ProductsPage: React.FC = () => {
         const response =
           selectedCategory !== "All categories"
             ? await axios.get(
-                `https://dummyjson.com/products/category/${selectedCategory}`
+                `https://dummyjson.com/products/category/${selectedCategory}?limit=10&skip=${
+                  (currentPage - 1) * 10
+                }`
               )
             : await axios.get(
                 `https://dummyjson.com/products/search?q=${searchQuery}&limit=10&skip=${
@@ -66,7 +68,7 @@ const ProductsPage: React.FC = () => {
     <main className="pt-12 pb-24">
       <div className="main__container flex flex-col gap-4">
         <h1 className="text-3xl font-bold text-dark-6">All Products</h1>
-        <div className="flex gap-4 bg-[#80dfff20] p-2 rounded-lg">
+        <div className="flex gap-4 bg-[#80dfff20] p-2 rounded-lg justify-end">
           <Input
             type="text"
             placeholder="Search products..."
