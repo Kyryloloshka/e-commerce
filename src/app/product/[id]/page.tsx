@@ -53,19 +53,19 @@ const ProductDetailsPage: React.FC = () => {
       <div className="flex flex-col md:flex-row product-details__container gap-4">
         <div className="w-full md:w-1/2 relative">
           {images.length === 1 ? (
-            <Image
-              src={images[0]}
-              alt={product.title}
-              width={product.dimensions.width}
-              height={product.dimensions.height}
-              layout="responsive"
-              objectFit="contain"
-              priority={true}
-            />
+            <div className="relative w-full h-[500px]">
+              <Image
+                src={images[0]}
+                alt={product.title}
+                layout="fill"
+                objectFit="contain"
+                priority={true}
+              />
+            </div>
           ) : (
             <Slider {...settings}>
               {product.images.map((image: string, index: number) => (
-                <div key={index} className="relative w-full h-0 pb-[100%]">
+                <div key={index} className="relative w-full h-0 pb-[100%] ">
                   <Image
                     className="object-contain"
                     layout="fill"

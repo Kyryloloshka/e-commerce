@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useRating } from "@/hooks/useRating";
 import React, { useEffect, useRef } from "react";
 import {
@@ -19,7 +19,7 @@ const Rating = ({ rating }: { rating: number }) => {
   }, [rating]);
   return (
     <>
-      <div className="rating rating_set pb-1">
+      <div className="rating rating_set">
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>

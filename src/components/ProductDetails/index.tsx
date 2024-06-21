@@ -13,11 +13,22 @@ const ProductDetails = ({ product }: { product: Product }) => {
         <h1 className="text-4xl font-medium pt-12 tracking-wider">
           {product.title}
         </h1>
-        <Rating rating={product.rating} />
+        <div className="flex gap-2 items-center flex-wrap`">
+          <Rating rating={product.rating} />
+          <span className=" flex-auto">({product.reviews.length} reviews)</span>
+          <span className="">sku: {product.sku}</span>
+        </div>
         <Stock status={product.availabilityStatus} left={product.stock} />
         <p className="text-lg tracking-wider leading-[1.1em]">
           {product.description}
         </p>
+        {product.minimumOrderQuantity > 1 && (
+          <p>
+            <span className="text-sm">
+              Minimum order quantity: {product.minimumOrderQuantity}
+            </span>
+          </p>
+        )}
         <div className="flex  items-end flex-wrap gap-6">
           <Price discount={product.discountPercentage} price={product.price} />
           <div className="flex gap-3 flex-wrap">
@@ -41,6 +52,18 @@ const ProductDetails = ({ product }: { product: Product }) => {
         <h2 className="text-2xl font-semibold">About</h2>
         {product.brand && <p>Brand: {product.brand}</p>}
         <p>Category: {product.category}</p>
+        <p>{product.returnPolicy}</p>
+        <p>{product.warrantyInformation}</p>
+        <p className="flex gap-2">
+          {product.tags.map((tag) => (
+            <span
+              key={tag}
+              className="cursor-pointer bg-light-6 text-primary-600 rounded-full leading-[1.3em] pb-[2px] px-2"
+            >
+              {tag}
+            </span>
+          ))}
+        </p>
       </div>
     </div>
   );
