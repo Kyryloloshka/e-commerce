@@ -1,6 +1,8 @@
 import Link from "next/link";
 import React from "react";
 import "./styles.scss";
+import NavLinks from "./_components/NavLinks";
+
 
 const Header = () => {
   return (
@@ -11,16 +13,7 @@ const Header = () => {
             E-commerce project
           </Link>
         </div>
-        <nav>
-          <ul className="flex adaptive-gap">
-            <li>
-              <Link href="/">Products</Link>
-            </li>
-            <li>
-              <Link href="/my-cart">Cart</Link>
-            </li>
-          </ul>
-        </nav>
+        <NavLinks />
       </div>
     </header>
   );

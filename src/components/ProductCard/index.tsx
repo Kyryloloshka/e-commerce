@@ -26,7 +26,9 @@ const ProductCard = ({ product }: { product: Product }) => {
       <Link href={`/product/${product.id}`}>
         <h3 className="text-xl tracking-wider">{product.title}</h3>
       </Link>
-      <Rating rating={product.rating} />
+      <p className="mb-1">
+        <Rating rating={product.rating} />
+      </p>
       <p className="absolute text-right top-0 right-0 max-w-full m-2 bg-light-2 bg-opacity-65 rounded-md px-3 py-1 text-sm font-semibold text-dark-6 ">
         {product.category}
       </p>

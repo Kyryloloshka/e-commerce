@@ -15,6 +15,9 @@ const Breadcrumbs = ({
 }: {
   items: { label: string; href: string }[];
 }) => {
+  if (items.length === 0) {
+    return null;
+  }
   const lastItemLabel = items[items.length - 1].label;
   return (
     <Breadcrumb>

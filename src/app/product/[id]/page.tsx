@@ -12,6 +12,7 @@ import ProductDetails from "@/components/ProductDetails";
 import NextArrow from "./_components/NextArrow";
 import PrevArrow from "./_components/PrevArrow";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import Loading from "@/components/Loading";
 
 const ProductDetailsPage: React.FC = () => {
   const [product, setProduct] = useState<Product | null>(null);
@@ -33,7 +34,9 @@ const ProductDetailsPage: React.FC = () => {
     }
   }, [id]);
 
-  if (!product) return <main>Loading...</main>;
+  if (!product) {
+    return <Loading />;
+  }
 
   const settings = {
     dots: true,
@@ -56,7 +59,7 @@ const ProductDetailsPage: React.FC = () => {
           items={[
             {
               label: product.category,
-              href: `/${product.category}`,
+              href: `/category/${product.category}`,
             },
             { label: product.title, href: `/product/${product.id}` },
           ]}

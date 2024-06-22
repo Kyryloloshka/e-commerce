@@ -14,6 +14,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import Pagination from "@/components/Pagination";
+import { ITEMS_PER_PAGE } from "@/lib/consts";
 
 const ProductsPage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -22,7 +24,6 @@ const ProductsPage: React.FC = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All categories");
-
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -44,18 +45,18 @@ const ProductsPage: React.FC = () => {
         const response =
           selectedCategory !== "All categories"
             ? await axios.get(
-                `https://dummyjson.com/products/category/${selectedCategory}?limit=10&skip=${
-                  (currentPage - 1) * 10
+                `https://dummyjson.com/products/category/${selectedCategory}?limit=${ITEMS_PER_PAGE}&skip=${
+                  (currentPage - 1) * ITEMS_PER_PAGE
                 }`
               )
             : await axios.get(
-                `https://dummyjson.com/products/search?q=${searchQuery}&limit=10&skip=${
-                  (currentPage - 1) * 10
+                `https://dummyjson.com/products/search?q=${searchQuery}&limit=${ITEMS_PER_PAGE}&skip=${
+                  (currentPage - 1) * ITEMS_PER_PAGE
                 }`
               );
 
         setProducts(response.data.products);
-        setTotalPages(Math.ceil(response.data.total / 10));
+        setTotalPages(Math.ceil(response.data.total / ITEMS_PER_PAGE));
       } catch (error) {
         console.error("Error fetching products:", error);
       }
@@ -101,29 +102,11 @@ const ProductsPage: React.FC = () => {
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
-        <div className="flex gap-3 items-center self-center">
-          <Button
-            variant={"circle"}
-            size={"circle"}
-            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-            disabled={currentPage === 1}
-          >
-            <i className="_icon-right-arrow text-sm rotate-180"></i>
-          </Button>
-          <span>
-            Page {currentPage} of {totalPages}
-          </span>
-          <Button
-            variant={"circle"}
-            size={"circle"}
-            onClick={() =>
-              setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-            }
-            disabled={currentPage === totalPages}
-          >
-            <i className="_icon-right-arrow text-sm"></i>
-          </Button>
-        </div>
+        <Pagination
+          totalPages={totalPages}
+          setCurrentPage={setCurrentPage}
+          currentPage={currentPage}
+        />
       </div>
     </main>
   );
