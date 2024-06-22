@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'icons';
   src:
-    url('./icons.ttf?kpikck') format('truetype'),
-    url('./icons.woff?kpikck') format('woff'),
-    url('./icons.svg?kpikck#icons') format('svg');
+    url('./icons.ttf?e6lye2') format('truetype'),
+    url('./icons.woff?e6lye2') format('woff'),
+    url('./icons.svg?e6lye2#icons') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -24,6 +24,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+._icon-home:before {
+  content: "\e903";
+}
 ._icon-check:before {
   content: "\e902";
 }

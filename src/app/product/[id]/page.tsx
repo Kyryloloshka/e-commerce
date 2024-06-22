@@ -11,6 +11,7 @@ import "./styles.scss";
 import ProductDetails from "@/components/ProductDetails";
 import NextArrow from "./_components/NextArrow";
 import PrevArrow from "./_components/PrevArrow";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 const ProductDetailsPage: React.FC = () => {
   const [product, setProduct] = useState<Product | null>(null);
@@ -50,6 +51,17 @@ const ProductDetailsPage: React.FC = () => {
 
   return (
     <main className="pt-12 pb-24">
+      <div className="breadcrumbs__container">
+        <Breadcrumbs
+          items={[
+            {
+              label: product.category,
+              href: `/${product.category}`,
+            },
+            { label: product.title, href: `/product/${product.id}` },
+          ]}
+        />
+      </div>
       <div className="flex flex-col md:flex-row product-details__container gap-4">
         <div className="w-full md:w-1/2 relative">
           {images.length === 1 ? (
