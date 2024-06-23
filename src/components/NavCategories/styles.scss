@@ -1,0 +1,39 @@
+.pseudo-elem-nav-categories {
+  position: relative;
+}
+
+.pseudo-elem-nav-categories-right::before {
+  content: "";
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 5rem;
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 0) 0%,
+    #ffe5f4 70%,
+    #ffe5f4 100%
+  );
+  position: absolute;
+  z-index: 1;
+}
+
+.pseudo-elem-nav-categories-left::after {
+  content: "";
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 5rem;
+  background: linear-gradient(
+    -90deg,
+    rgba(2, 0, 36, 0) 0%,
+    #ffe5f4 70%,
+    #ffe5f4 100%
+  );
+  position: absolute;
+  z-index: 1;
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}

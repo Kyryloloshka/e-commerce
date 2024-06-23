@@ -371,3 +371,9 @@ html {
   max-width: 100px;
   margin: 10px;
 }
+.inner-shadow-primary {
+  box-shadow: 0px 0px 15px 5px var(--light-2) inset;
+}
+.inner-shadow-primary:hover {
+  box-shadow: 0px 0px 15px 5px var(--light-6) inset;
+}

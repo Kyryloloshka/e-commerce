@@ -46,11 +46,13 @@ const CategoryPage: React.FC = () => {
 
     paginateProducts();
   }, [filteredProducts, currentPage]);
+
   if (!products.length) {
     return (
       <NotFoundPage message={"Sorry... but this category was not found :("} />
     );
   }
+
   if (category instanceof Array) {
     return null;
   }
