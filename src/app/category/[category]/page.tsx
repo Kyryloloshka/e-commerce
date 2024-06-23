@@ -8,6 +8,7 @@ import FilterSidebar from "@/components/FilterSidebar";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { ITEMS_PER_PAGE } from "@/lib/consts";
 import Pagination from "@/components/Pagination";
+import NotFoundPage from "@/app/not-found";
 
 const CategoryPage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -45,7 +46,11 @@ const CategoryPage: React.FC = () => {
 
     paginateProducts();
   }, [filteredProducts, currentPage]);
-
+  if (!products.length) {
+    return (
+      <NotFoundPage message={"Sorry... but this category was not found :("} />
+    );
+  }
   if (category instanceof Array) {
     return null;
   }
