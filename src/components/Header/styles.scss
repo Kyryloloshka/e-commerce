@@ -1,4 +1,4 @@
-@use "../../app/globals.scss" as mixins;
+
 
 .bg-blur {
   top: 0;
@@ -9,7 +9,3 @@
   -webkit-backdrop-filter: blur(30px); 
 }
 
-.adaptive-gap {
-  row-gap: 0.25rem;
-  @include mixins.adaptiveValue(column-gap, 60, 10);
-}

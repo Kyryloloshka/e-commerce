@@ -14,7 +14,7 @@ const Pagination = ({
     totalPages > 1 && (
       <div className="flex gap-3 items-center self-center justify-center">
         <Button
-          variant={"circle"}
+          variant={"primary"}
           size={"circle"}
           onClick={() => {
             window.scrollTo({ top: 0, behavior: "smooth" });
@@ -28,7 +28,7 @@ const Pagination = ({
           Page {currentPage} of {totalPages}
         </span>
         <Button
-          variant={"circle"}
+          variant={"primary"}
           size={"circle"}
           onClick={() => {
             window.scrollTo({ top: 0, behavior: "smooth" });

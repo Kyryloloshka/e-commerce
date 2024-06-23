@@ -12,8 +12,8 @@ const links = [
 const NavLinks = () => {
   const pathname = usePathname();
   return (
-    <nav>
-      <ul className="flex adaptive-gap">
+    <nav className="">
+      <ul className="py-4 flex adaptive-gap flex-wrap items-center justify-center text-center">
         {links.map((link) => {
           const isActive = pathname === link.href;
           return (

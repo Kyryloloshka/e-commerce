@@ -1,3 +1,5 @@
+@use "../../../../app/globals.scss" as mixins;
+
 .header-link {
   color: var(--dark-6);
   position: relative;
@@ -41,4 +43,8 @@
     border-radius: 1px;
     background-color: var(--primary-500);
   }
+}
+.adaptive-gap {
+  row-gap: 1rem;
+  @include mixins.adaptiveValue(column-gap, 60, 10);
 }

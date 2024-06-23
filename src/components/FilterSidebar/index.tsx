@@ -61,12 +61,12 @@ const FilterSidebar = ({
 
   const brands = Array.from(new Set(products.map((product) => product.brand)));
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-8">
       <h2 className="text-xl font-medium">Filters</h2>
       <div className="flex flex-col gap-3">
         {brands.length > 1 && brands[0] !== undefined && (
           <>
-            <h3>Brands</h3>
+            <h3 className="text-lg">Brands</h3>
             {brands.map((brand) => (
               <>
                 <div key={brand} className="flex items-center space-x-2">
@@ -97,7 +97,7 @@ const FilterSidebar = ({
         )}
       </div>
       <div className="flex flex-col gap-3">
-        <h3>Price Range</h3>
+        <h3 className="text-lg">Price Range</h3>
         <Slider.Root
           className="SliderRoot"
           defaultValue={[priceRange.min, priceRange.max]}
@@ -120,7 +120,9 @@ const FilterSidebar = ({
           priceRange.max
         )}`}</span>
       </div>
-      <Button onClick={applyFilters}>Apply Filters</Button>
+      <Button variant={"primary"} onClick={applyFilters}>
+        Apply Filters
+      </Button>
     </div>
   );
 };
