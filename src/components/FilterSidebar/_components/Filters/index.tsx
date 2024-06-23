@@ -31,7 +31,6 @@ const Filters = ({
       );
       return price > max ? price : max;
     }, 0);
-    console.log(maxPrice);
     setMaxPrice(maxPrice);
     setPriceRange({ min: 0, max: maxPrice });
   }, [products]);

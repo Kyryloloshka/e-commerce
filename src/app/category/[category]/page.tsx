@@ -17,7 +17,7 @@ const CategoryPage: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const { category } = useParams();
-
+  const [loading, setLoading] = useState<boolean>(true);
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -31,6 +31,8 @@ const CategoryPage: React.FC = () => {
         setCurrentPage(1);
       } catch (error) {
         console.error("Error fetching products:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -46,7 +48,13 @@ const CategoryPage: React.FC = () => {
 
     paginateProducts();
   }, [filteredProducts, currentPage]);
-
+  if (loading) {
+    return (
+      <main className="loading__conainter text-2xl font-bold flex items-center justify-center	text-center">
+        Loading...
+      </main>
+    );
+  }
   if (!products.length) {
     return (
       <NotFoundPage message={"Sorry... but this category was not found :("} />
@@ -71,16 +79,24 @@ const CategoryPage: React.FC = () => {
           setCurrentPage={setCurrentPage}
         />
         <div className="flex-auto">
-          <div className="product-list flex-auto">
-            {productsToShow.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-          <Pagination
-            totalPages={totalPages}
-            setCurrentPage={setCurrentPage}
-            currentPage={currentPage}
-          />
+          {productsToShow.length === 0 ? (
+            <div className="flex items-center justify-center text-xl w-full font-bold">
+              No results :(
+            </div>
+          ) : (
+            <>
+              <div className="product-list flex-auto">
+                {productsToShow.map((product) => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
+              </div>
+              <Pagination
+                totalPages={totalPages}
+                setCurrentPage={setCurrentPage}
+                currentPage={currentPage}
+              />
+            </>
+          )}
         </div>
       </div>
     </main>

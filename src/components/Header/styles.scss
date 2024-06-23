@@ -1,4 +1,4 @@
-
+@use "../../app/globals.scss" as mixins;
 
 .bg-blur {
   top: 0;
@@ -6,6 +6,9 @@
   width: 100%;
   z-index: 10;
   backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px); 
+  -webkit-backdrop-filter: blur(30px);
 }
 
+.adaptive-size-logo {
+  @include mixins.adaptiveValue(font-size, 20, 14);
+}

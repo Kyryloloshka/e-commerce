@@ -93,8 +93,8 @@ const NavCategories = () => {
     const handleScroll = () => {
       if (navRef.current) {
         const { scrollWidth, clientWidth, scrollLeft } = navRef.current;
-        setIsScrollableRight(scrollLeft + clientWidth < scrollWidth);
-        setIsScrollableLeft(scrollLeft > 0);
+        setIsScrollableRight(scrollLeft + clientWidth + 2 < scrollWidth);
+        setIsScrollableLeft(scrollLeft > 2);
       }
     };
 
@@ -136,40 +136,44 @@ const NavCategories = () => {
   };
 
   return (
-    <nav
-      className={`bg-light-1 relative ${
-        isScrollableRight && "pseudo-elem-nav-categories-right"
-      } ${isScrollableLeft && "pseudo-elem-nav-categories-left"}`}
-    >
-      {isScrollableLeft && (
-        <Button
-          onClick={scrollLeft}
-          className="rounded-full h-8 hover:bg-light-6 transition-all hover:scale-110 w-8 bg-transparent shadow-none absolute left-[15px] top-1/2 -translate-y-1/2 z-10"
+    <nav className="bg-light-4">
+      <div className="nav-wrapper__container">
+        <div
+          className={`bg-light-1 relative w-full ${
+            isScrollableRight && "pseudo-elem-nav-categories-right"
+          } ${isScrollableLeft && "pseudo-elem-nav-categories-left"}`}
         >
-          <i className="_icon-right-arrow rotate-180 text-dark-1 font-bold text-lg"></i>
-        </Button>
-      )}
-      <div className="flex overflow-x-scroll scrollbar-hidden" ref={navRef}>
-        {filteredCategories.map((category) => {
-          return (
-            <Link
-              key={category.href}
-              className="h-full whitespace-nowrap hover:text-dark-4 flex hover:bg-light-2 transition-all inner-shadow-primary items-center min-h-14 uppercase text-dark-6 tracking-wider font-semibold px-10 justify-center"
-              href={category.href}
+          {isScrollableLeft && (
+            <Button
+              onClick={scrollLeft}
+              className="rounded-full h-8 hover:bg-light-6 transition-all hover:scale-110 w-8 bg-transparent shadow-none absolute left-[15px] top-1/2 -translate-y-1/2 z-10"
             >
-              {category.label}
-            </Link>
-          );
-        })}
+              <i className="_icon-right-arrow rotate-180 text-dark-1 font-bold text-lg"></i>
+            </Button>
+          )}
+          <div className="flex overflow-x-scroll scrollbar-hidden" ref={navRef}>
+            {filteredCategories.map((category) => {
+              return (
+                <Link
+                  key={category.href}
+                  className="h-full whitespace-nowrap hover:text-dark-4 flex hover:bg-light-2 transition-all inner-shadow-primary items-center min-h-14 uppercase text-dark-6 tracking-wider font-semibold px-10 justify-center"
+                  href={category.href}
+                >
+                  {category.label}
+                </Link>
+              );
+            })}
+          </div>
+          {isScrollableRight && (
+            <Button
+              onClick={scrollRight}
+              className="rounded-full h-8 hover:bg-light-6 transition-all hover:scale-110 w-8 bg-transparent shadow-none absolute right-[15px] top-1/2 -translate-y-1/2 z-10"
+            >
+              <i className="_icon-right-arrow text-dark-1 font-bold text-lg"></i>
+            </Button>
+          )}
+        </div>
       </div>
-      {isScrollableRight && (
-        <Button
-          onClick={scrollRight}
-          className="rounded-full h-8 hover:bg-light-6 transition-all hover:scale-110 w-8 bg-transparent shadow-none absolute right-[15px] top-1/2 -translate-y-1/2 z-10"
-        >
-          <i className="_icon-right-arrow text-dark-1 font-bold text-lg"></i>
-        </Button>
-      )}
     </nav>
   );
 };
