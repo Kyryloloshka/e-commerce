@@ -13,6 +13,7 @@ import NextArrow from "./_components/NextArrow";
 import PrevArrow from "./_components/PrevArrow";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Loading from "@/components/Loading";
+import SimmilarProducts from "@/components/SimmilarProducts";
 
 const ProductDetailsPage: React.FC = () => {
   const [product, setProduct] = useState<Product | null>(null);
@@ -94,6 +95,12 @@ const ProductDetailsPage: React.FC = () => {
           )}
         </div>
         <ProductDetails product={product} />
+      </div>
+      <div className="simmilar-products__container">
+        <div className="mt-24">
+          <h3 className="text-3xl font-bold text-dark-6">You may also like</h3>
+          <SimmilarProducts category={product.category} />
+        </div>
       </div>
     </main>
   );
