@@ -16,9 +16,10 @@ const Pagination = ({
         <Button
           variant={"circle"}
           size={"circle"}
-          onClick={() =>
-            setCurrentPage((prev): number => Math.max(prev - 1, 1))
-          }
+          onClick={() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+            setCurrentPage((prev): number => Math.max(prev - 1, 1));
+          }}
           disabled={currentPage === 1}
         >
           <i className="_icon-right-arrow text-sm rotate-180"></i>
@@ -29,9 +30,10 @@ const Pagination = ({
         <Button
           variant={"circle"}
           size={"circle"}
-          onClick={() =>
-            setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-          }
+          onClick={() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+            setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+          }}
           disabled={currentPage === totalPages}
         >
           <i className="_icon-right-arrow text-sm"></i>
