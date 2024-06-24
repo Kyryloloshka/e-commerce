@@ -18,6 +18,7 @@ const CategoryPage: React.FC = () => {
   const [totalPages, setTotalPages] = useState(0);
   const { category } = useParams();
   const [loading, setLoading] = useState<boolean>(true);
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -48,6 +49,7 @@ const CategoryPage: React.FC = () => {
 
     paginateProducts();
   }, [filteredProducts, currentPage]);
+
   if (loading) {
     return (
       <main className="loading__conainter text-2xl font-bold flex items-center justify-center	text-center">
@@ -55,6 +57,7 @@ const CategoryPage: React.FC = () => {
       </main>
     );
   }
+
   if (!products.length) {
     return (
       <NotFoundPage message={"Sorry... but this category was not found :("} />
@@ -64,6 +67,7 @@ const CategoryPage: React.FC = () => {
   if (category instanceof Array) {
     return null;
   }
+	
   return (
     <main className="pt-12 pb-24">
       <div className="breadcrumbs__container pb-6">
