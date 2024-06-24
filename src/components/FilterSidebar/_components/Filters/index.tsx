@@ -4,6 +4,7 @@ import { countDiscountedPrice, roundToTwoDecimals } from "@/lib/utils";
 import { Product } from "@/types";
 import * as Slider from "@radix-ui/react-slider";
 import { useEffect, useState } from "react";
+import BrandsFilter from "../BrandsFilter";
 
 const Filters = ({
   products,
@@ -60,39 +61,11 @@ const Filters = ({
   const brands = Array.from(new Set(products.map((product) => product.brand)));
   return (
     <>
-      <div className="flex flex-col gap-3">
-        {brands.length > 1 && brands[0] !== undefined && (
-          <>
-            <h3 className="text-lg">Brands</h3>
-            {brands.map((brand) => (
-              <>
-                <div key={brand} className="flex items-center space-x-2">
-                  <Checkbox
-                    id={brand}
-                    onCheckedChange={(checked) => {
-                      if (checked) {
-                        setSelectedBrands([...selectedBrands, brand]);
-                      } else {
-                        setSelectedBrands(
-                          selectedBrands.filter(
-                            (selectedBrand) => selectedBrand !== brand
-                          )
-                        );
-                      }
-                    }}
-                  />
-                  <label
-                    htmlFor={brand}
-                    className="peer-disabled:cursor-not-allowed select-none peer-disabled:opacity-70"
-                  >
-                    {brand}
-                  </label>
-                </div>
-              </>
-            ))}
-          </>
-        )}
-      </div>
+      <BrandsFilter
+        brands={brands}
+        selectedBrands={selectedBrands}
+        setSelectedBrands={setSelectedBrands}
+      />
       <div className="flex flex-col gap-3">
         <h3 className="text-lg">Price Range</h3>
         <Slider.Root
