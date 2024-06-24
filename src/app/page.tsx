@@ -1,10 +1,7 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import ProductCard from "@/components/ProductCard";
-import { Category, Product } from "@/types";
 import Pagination from "@/components/Pagination";
-import { ITEMS_PER_PAGE } from "@/lib/consts";
 import NavCategories from "@/components/NavCategories";
 import SearchHeaderProducts from "@/components/SearchHeaderProducts";
 import useFetchCategories from "@/hooks/usesFetchCategory";
