@@ -7,55 +7,21 @@ import Pagination from "@/components/Pagination";
 import { ITEMS_PER_PAGE } from "@/lib/consts";
 import NavCategories from "@/components/NavCategories";
 import SearchHeaderProducts from "@/components/SearchHeaderProducts";
+import useFetchCategories from "@/hooks/usesFetchCategory";
+import useFetchProducts from "@/hooks/useFetchProducts";
 
 const ProductsPage: React.FC = () => {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
+  const [categories] = useFetchCategories();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] =
     useState<string>("All categories");
+  const [currentPage, setCurrentPage] = useState(1);
 
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const response = await axios.get(
-          "https://dummyjson.com/products/categories"
-        );
-        setCategories(response.data);
-      } catch (error) {
-        console.error("Error fetching categories:", error);
-      }
-    };
-
-    fetchCategories();
-  }, []);
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response =
-          selectedCategory !== "All categories"
-            ? await axios.get(
-                `https://dummyjson.com/products/category/${selectedCategory}?limit=${ITEMS_PER_PAGE}&skip=${
-                  (currentPage - 1) * ITEMS_PER_PAGE
-                }`
-              )
-            : await axios.get(
-                `https://dummyjson.com/products/search?q=${searchQuery}&limit=${ITEMS_PER_PAGE}&skip=${
-                  (currentPage - 1) * ITEMS_PER_PAGE
-                }`
-              );
-        setProducts(response.data.products);
-        setTotalPages(Math.ceil(response.data.total / ITEMS_PER_PAGE));
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
-
-    fetchProducts();
-  }, [currentPage, searchQuery, selectedCategory]);
+  const { products, totalPages } = useFetchProducts(
+    selectedCategory,
+    searchQuery,
+    currentPage
+  );
 
   return (
     <>

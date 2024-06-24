@@ -1,8 +1,4 @@
-import React, { useEffect, useState } from "react";
 import "./styles.scss";
-import * as Slider from "@radix-ui/react-slider";
-import { Checkbox } from "@/components/ui/checkbox";
-import { countDiscountedPrice, roundToTwoDecimals } from "@/lib/utils";
 import { Product } from "@/types";
 import {
   Accordion,

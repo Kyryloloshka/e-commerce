@@ -7,7 +7,6 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "../ui/breadcrumb";
-import { useRouter } from "next/navigation";
 import { capitalizeFirstLetter } from "@/lib/utils";
 
 const Breadcrumbs = ({

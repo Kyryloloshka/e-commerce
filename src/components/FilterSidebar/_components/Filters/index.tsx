@@ -1,22 +1,23 @@
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import { countDiscountedPrice, roundToTwoDecimals } from "@/lib/utils";
+import { countDiscountedPrice } from "@/lib/utils";
 import { Product } from "@/types";
-import * as Slider from "@radix-ui/react-slider";
 import { useEffect, useState } from "react";
 import BrandsFilter from "../BrandsFilter";
+import PriceFilter from "../PriceFilter";
+
+interface FiltersProps {
+  products: Product[];
+  setProducts: (products: Product[]) => void;
+  setCurrentPage: (page: number) => void;
+  setTotalPages: (totalPages: number) => void;
+}
 
 const Filters = ({
   products,
   setProducts,
   setCurrentPage,
   setTotalPages,
-}: {
-  products: Product[];
-  setProducts: (products: Product[]) => void;
-  setCurrentPage: (page: number) => void;
-  setTotalPages: (totalPages: number) => void;
-}) => {
+}: FiltersProps) => {
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   const [priceRange, setPriceRange] = useState<{ min: number; max: number }>({
     min: 0,
@@ -59,6 +60,7 @@ const Filters = ({
   };
 
   const brands = Array.from(new Set(products.map((product) => product.brand)));
+
   return (
     <>
       <BrandsFilter
@@ -66,30 +68,11 @@ const Filters = ({
         selectedBrands={selectedBrands}
         setSelectedBrands={setSelectedBrands}
       />
-      <div className="flex flex-col gap-3">
-        <h3 className="text-lg">Price Range</h3>
-        <Slider.Root
-          className="SliderRoot"
-          defaultValue={[priceRange.min, priceRange.max]}
-          max={100}
-          step={1}
-          onValueChange={(values) => {
-            setPriceRange({
-              min: (values[0] / 100) * maxPrice,
-              max: (values[1] / 100) * maxPrice,
-            });
-          }}
-        >
-          <Slider.Track className="SliderTrack">
-            <Slider.Range className="SliderRange" />
-          </Slider.Track>
-          <Slider.Thumb className="SliderThumb" aria-label="Volume" />
-          <Slider.Thumb className="SliderThumb" aria-label="Volume" />
-        </Slider.Root>
-        <span>{`$${roundToTwoDecimals(priceRange.min)} - $${roundToTwoDecimals(
-          priceRange.max
-        )}`}</span>
-      </div>
+      <PriceFilter
+        maxPrice={maxPrice}
+        priceRange={priceRange}
+        setPriceRange={setPriceRange}
+      />
       <Button variant={"primary"} onClick={applyFilters}>
         Apply Filters
       </Button>
