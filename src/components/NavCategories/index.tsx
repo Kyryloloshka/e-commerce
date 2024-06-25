@@ -41,7 +41,7 @@ const NavCategories = () => {
   };
 
   return (
-    <nav className="bg-light-4">
+    <nav data-testid="nav-categories" className="bg-light-4">
       <div className="nav-wrapper__container">
         <div
           className={`bg-light-1 relative w-full ${

@@ -9,7 +9,10 @@ import Rating from "../Rating";
 
 const ProductCard = ({ product }: { product: Product }) => {
   return (
-    <div className="hover:scale-[1.02] border-card rounded-xl hover:bg-light-1 transition p-5 flex flex-col relative duration-300 ease-in-out group hover:shadow-3xl">
+    <div
+      data-testid="product-card"
+      className="hover:scale-[1.02] border-card rounded-xl hover:bg-light-1 transition p-5 flex flex-col relative duration-300 ease-in-out group hover:shadow-3xl"
+    >
       <Link
         className="flex aspect-square scale-100 overflow-hidden items-center justify-center group-hover:scale-105 pb-2 transition-transform duration-300 ease-in-out cursor-pointer relative"
         href={`/product/${product.id}`}

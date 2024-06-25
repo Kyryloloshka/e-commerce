@@ -27,6 +27,8 @@ const SearchHeaderProducts = ({
         placeholder="Search products..."
         disabled={selectedCategory !== "All categories"}
         value={searchQuery}
+				role="textbox"
+        aria-label="Search product"
         onChange={(e) => setSearchQuery(e.target.value)}
         className="bg-light-1 text-dark-6 placeholder:text-gray-600 sm:max-w-[250px]"
       />

@@ -21,6 +21,9 @@ const Pagination = ({
         <Button
           variant={"primary"}
           size={"circle"}
+          role="button"
+          aria-label="Previous Page"
+          data-testid="previous-page-button"
           className={`${currentPage === 1 && "pointer-events-none opacity-50"}`}
           onClick={() => {
             scrollToTop();
@@ -37,6 +40,9 @@ const Pagination = ({
           className={`${
             currentPage === totalPages && "pointer-events-none opacity-50"
           }`}
+          role="button"
+          aria-label="Next Page"
+          data-testid="next-page-button"
           size={"circle"}
           onClick={() => {
             scrollToTop();
